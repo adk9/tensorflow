@@ -50,10 +50,6 @@ load(
     "if_mkl_v1",
     "if_mkldnn_threadpool",
 )
-load(
-    "//third_party/ngraph:build_defs.bzl",
-    "if_ngraph",
-)
 
 # version for the shared libraries, can
 # not contain rc or alpha, only numbers.
@@ -330,7 +326,6 @@ def tf_copts(
         if_mkl_v1(["-DENABLE_MKLDNN_V1", "-DENABLE_INTEL_MKL_BFLOAT16"]) +
         if_mkldnn_threadpool(["-DENABLE_MKLDNN_THREADPOOL"]) +
         if_enable_mkl(["-DENABLE_MKL"]) +
-        if_ngraph(["-DINTEL_NGRAPH=1"]) +
         if_android_arm(["-mfpu=neon"]) +
         if_linux_x86_64(["-msse3"]) +
         if_ios_x86_64(["-msse4.1"]) +
